@@ -13,6 +13,6 @@ pytz==2017.2
 requests==2.18.1
 six==1.10.0
 twilio==6.6.2
-urllib3===dev
+urllib3==1.22
 virtualenv==15.1.0
 werkzeug==0.12.2
