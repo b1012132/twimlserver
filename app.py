@@ -15,12 +15,22 @@ def hello():
 
 @app.route("/record", methods=['POST'])
 def record():
-	url = request.form['RecordingUrl']
-	r = requests.get(url)
 	
-	wavFile = open(,'w')#File path here
-	wavFile.write(r.content)
-	wavFile.close()
+	wavUrl = request.form['RecordingUrl']
+	r = requests.get(wavUrl)
+	
+	watsonUrl = 'https://stream.watson-j.jp/speech-to-text/api/v1/sessions?model=ja-JP_BroadbandModel&word_confidence=true'
+	username = 
+	password =
+	headers = {'Content-Type': 'audio/wav'}
+	audio = r.content
+	r2 = requests.post(url, data=audio, headers=headers, auth=(username, password))
+	
+	res = json.loads(r2.text)
+	if(len(res['results']) == 0):
+		say ="sorry"			
+	else:
+		for result in res['results']:			transcript =									
 
 if __name__ == "__main__":
     app.run()
