@@ -33,7 +33,7 @@ def record():
 		say = u"ごめんなさい、聞き取れませんでした。"
 	else:
 		for result in res['results']:
-			for alternative in result['alternative']
+			for alternative in result['alternative']:
 				transcript = alternative['transcript']
 				confidence = alternative['confidence']
 		say = transcript.encode('utf-8')
