@@ -11,7 +11,7 @@ app = Flask(__name__)
 def hello():
 	resp = VoiceResponse()
 	resp.say(u"こんにちは。何かお困りですか。", language="ja-JP", voice="alice")
-	resp.Record(timeout=10, maxLength=30, finishOnKey="1234567890*#", recordingStatusCallback="https://twimlserver.herokuapp.com/record")
+	resp.record(timeout=10, max_length=30, finish_on_key="1234567890*#", recording_status_callback="https://twimlserver.herokuapp.com/record")
 	
 	return str(resp)
 
@@ -33,7 +33,7 @@ def record():
 		say = u"ごめんなさい、聞き取れませんでした。"
 	else:
 		for result in res['results']:
-			for alternative in result['alternative']
+			for alternative in result['alternative']:
 				transcript = alternative['transcript']
 				confidence = alternative['confidence']
 		say = transcript.encode('utf-8')
