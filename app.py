@@ -7,7 +7,7 @@ import os
 
 app = Flask(__name__)
 
-@app.route("/", methods=['POST'])
+@app.route("/", methods=['GET', 'POST'])
 def hello():
 	resp = VoiceResponse()
 	resp.say(u"こんにちは。何かお困りですか。はなしおわったら何かキーを押してください。", language="ja-JP", voice="alice")
@@ -16,7 +16,7 @@ def hello():
 	
 	return str(resp)
 
-@app.route("/record", methods=['POST'])
+@app.route("/record", methods=['GET', 'POST'])
 def record():
 	
 	resp = VoiceResponse()
