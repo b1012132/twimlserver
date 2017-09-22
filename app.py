@@ -20,7 +20,7 @@ def hello():
 def record():
 
 	wavUrl = request.form['RecordingUrl']
-	r = requests.get(wavUrl)
+	r = requests.get("http://dl3.jvckenwood.com/pro/avc/product/pa-d_message/ai_arigatougozaimasita.wav")
 	
 	watsonUrl = 'https://stream.watson-j.jp/speech-to-text/api/v1/sessions?model=ja-JP_BroadbandModel&word_confidence=true'
 	username = os.environ["STT_USERNAME"]
