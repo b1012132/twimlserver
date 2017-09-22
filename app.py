@@ -27,7 +27,7 @@ def record():
 	password = os.environ["STT_PASSWORD"]
 	headers = {'Content-Type': 'audio/wav'}
 	audio = r.content
-	r2 = requests.post(url, data=audio, headers=headers, auth=(username, password))
+	r2 = requests.post(watsonUrl, data=audio, headers=headers, auth=(username, password))
 	
 	res = json.loads(r2.text)
 	if(len(res['results']) == 0):
