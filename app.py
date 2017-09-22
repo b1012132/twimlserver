@@ -4,7 +4,7 @@ from twilio.twiml.voice_response import VoiceResponse
 
 app = Flask(__name__)
 
-@app.route("/")
+@app.route("/", methods=['POST'])
 def hello():
 	resp = VoiceResponse()
 	resp.say(u"こんにちは。何かお困りですか。", language="ja-JP", voice="alice")
