@@ -19,6 +19,10 @@ def hello():
 @app.route("/record", methods=['POST'])
 def record():
 	
+	resp = VoiceResponse()
+	resp.say(u"レコードメソッド", language="ja-JP", voice="alice")
+	return str(resp)
+
 	wavUrl = request.form['RecordingUrl']
 	r = requests.get(wavUrl)
 	
