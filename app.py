@@ -19,7 +19,7 @@ def hello():
 @app.route("/record", methods=['GET', 'POST'])
 def record():
 
-	wavUrl = request.form['RecordingUrl']
+	wavUrl = 'https://drive.google.com/uc?authuser=0&id=0ByASpm0_1V4sWXl6MFNmdmFVT2s&export=download'#request.form['RecordingUrl']
 	r = requests.get(wavUrl)
 	
 	watsonUrl = 'https://stream.watson-j.jp/speech-to-text/api/v1/recognize?continuous=true&model=ja-JP_BroadbandModel&word_confidence=true'
