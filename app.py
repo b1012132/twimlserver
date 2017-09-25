@@ -29,23 +29,23 @@ def record():
 	audio = r.content
 	print r.status_code#
 	print audio
-	r2 = requests.post(watsonUrl, data=audio, headers=headers, auth=(username, password))
+	#r2 = requests.post(watsonUrl, data=audio, headers=headers, auth=(username, password))
 	
-	res = json.loads(r2.text)
-	print res
-	if(len(res['results']) == 0):
-		say = u"ごめんなさい、聞き取れませんでした。"
-	else:
-		for result in res['results']:
-			for alternative in result['alternative']:
-				transcript = alternative['transcript']
-				confidence = alternative['confidence']
-		say = transcript.encode('utf-8')
-		
-	resp = VoiceResponse()
-	resp.say(say, language="ja-JP", voice="alice")
+	#res = json.loads(r2.text)
+	#print res
+	#if(len(res['results']) == 0):
+	#	say = u"ごめんなさい、聞き取れませんでした。"
+	#else:
+	#	for result in res['results']:
+	#		for alternative in result['alternative']:
+	#			transcript = alternative['transcript']
+	#			confidence = alternative['confidence']
+	#	say = transcript.encode('utf-8')
+	#	
+	#resp = VoiceResponse()
+	#resp.say(say, language="ja-JP", voice="alice")
 	
-	return str(resp)
+	#return str(resp)
 	
 if __name__ == "__main__":
     app.run()
