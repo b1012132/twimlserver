@@ -19,7 +19,7 @@ def hello():
 @app.route("/record", methods=['GET', 'POST'])
 def record():
 
-	wavUrl = request.form['RecordingUrl']
+	#wavUrl = request.form['RecordingUrl']
 	r = requests.get("http://dl3.jvckenwood.com/pro/avc/product/pa-d_message/ai_arigatougozaimasita.wav")
 	
 	watsonUrl = 'https://stream.watson-j.jp/speech-to-text/api/v1/sessions?model=ja-JP_BroadbandModel&word_confidence=true'
@@ -27,9 +27,12 @@ def record():
 	password = os.environ["STT_PASSWORD"]
 	headers = {'Content-Type': 'audio/wav'}
 	audio = r.content
+	print r.status_code#
+	print audio
 	r2 = requests.post(watsonUrl, data=audio, headers=headers, auth=(username, password))
 	
 	res = json.loads(r2.text)
+	print res
 	if(len(res['results']) == 0):
 		say = u"ごめんなさい、聞き取れませんでした。"
 	else:
