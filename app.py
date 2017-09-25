@@ -11,7 +11,7 @@ app = Flask(__name__)
 def hello():
 	resp = VoiceResponse()
 	resp.say(u"こんにちは。何かお困りですか。はなしおわったら何かキーを押してください。", language="ja-JP", voice="alice")
-	resp.record(timeout=10, max_length=30, finish_on_key="1234567890*#", action="/record")#recording_status_callback
+	resp.record(timeout=10, max_length=30, finish_on_key="1234567890*#", recording_status_callback="/record")
 	resp.say(u"webhookがrecordに届いてないよー", language="ja-JP", voice="alice")
 	
 	return str(resp)
@@ -19,7 +19,7 @@ def hello():
 @app.route("/record", methods=['GET', 'POST'])
 def record():
 
-	wavUrl = 'https://drive.google.com/uc?authuser=0&id=0ByASpm0_1V4sWXl6MFNmdmFVT2s&export=download'#request.form['RecordingUrl']
+	wavUrl = request.form['RecordingUrl']
 	r = requests.get(wavUrl)
 	
 	watsonUrl = 'https://stream.watson-j.jp/speech-to-text/api/v1/recognize?continuous=true&model=ja-JP_BroadbandModel&word_confidence=true'
