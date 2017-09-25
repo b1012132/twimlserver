@@ -41,7 +41,7 @@ def record():
 		say = transcript
 		
 	resp = VoiceResponse()
-	resp.say(say+"ですか？", language="ja-JP", voice="alice")
+	resp.say(say, language="ja-JP", voice="alice")
 	
 	return str(resp)
 	
