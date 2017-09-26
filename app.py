@@ -60,7 +60,7 @@ def reply():
 def pause():
 
 	resp = VoiceResponse()
-	resp.pause(length=10)
+	resp.pause(length=30)
 	resp.redirect('/record', method='POST')
 	return str(resp)
 	
