@@ -17,7 +17,7 @@ def hello():
 	
 	return str(resp)
 
-@app.route("/record", methods=['GET', 'POST'])
+@app.route("/record", methods=['POST'])
 def record():
 
 	wavUrl = request.form['RecordingUrl']
@@ -48,7 +48,7 @@ def record():
 	
 	call = client.calls(callSid).update(url="https://twimlserver.herokuapp.com/reply?say="+say, method="GET")
 	
-	return
+	return "export success"
 	
 @app.route("/reply", methods=['GET'])
 def reply():
