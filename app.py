@@ -31,16 +31,15 @@ def record():
 	audio = r.content
 	r2 = requests.post(watsonUrl, data=audio, headers=headers, auth=(username, password))
 	
-	res = json.loads(r2.text)
+	say = u"ごめんなさい、聞き取れませんでした。"
+	if(r.status_code == 200):
+		res = json.loads(r2.text)
 	
-	if(len(res['results']) == 0):
-		say = u"ごめんなさい、聞き取れませんでした。"
-	else:
-		for result in res['results']:
-			for alternative in result['alternatives']:
-				transcript = alternative['transcript']
-				confidence = alternative['confidence']
-		say = transcript
+		if(len(res['results']) != 0):
+			for result in res['results']:
+				for alternative in result['alternatives']:
+					transcript = alternative['transcript']
+			say = transcript
 		
 	accountSid = os.environ["ACCOUNT_SID"]
 	authToken = os.environ["AUTH_TOKEN"]
