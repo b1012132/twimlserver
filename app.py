@@ -12,8 +12,7 @@ app = Flask(__name__)
 def hello():
 	resp = VoiceResponse()
 	resp.say(u"こんにちは。何かお困りですか。はなしおわったら何かキーを押してください。", language="ja-JP", voice="alice")
-	resp.record(timeout=10, max_length=30, finish_on_key="1234567890*#", recording_status_callback="/record")
-	resp.pause(length=30)
+	resp.record(timeout=10, max_length=30, finish_on_key="1234567890*#", action="/pause", recording_status_callback="/record")
 	
 	return str(resp)
 
@@ -54,6 +53,14 @@ def reply():
 
 	resp = VoiceResponse()
 	resp.say(request.args.get('say'), language="ja-JP", voice="alice")
+	
+	return str(resp)
+	
+@app.route("/pause", methods=['GET'])
+def pause():
+
+	resp = VoiceResponse()
+	resp.pause(length=30)
 	
 	return str(resp)
 	
