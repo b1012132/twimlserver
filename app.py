@@ -5,6 +5,7 @@ from twilio.rest import Client
 import requests
 import json
 import os
+import urllib
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ["SECRET_KEY"]
@@ -45,9 +46,9 @@ def record():
 	authToken = os.environ["AUTH_TOKEN"]
 	client = Client(accountSid, authToken)
 	
-	call = client.calls(callSid).update(url="https://twimlserver.herokuapp.com/reply?say="+say, method="GET")
+	call = client.calls(callSid).update(url="https://twimlserver.herokuapp.com/reply?say="+urllib.qute(say), method="GET")
 	
-	return "export success"
+	return call.to
 	
 @app.route("/reply", methods=['GET'])
 def reply():
