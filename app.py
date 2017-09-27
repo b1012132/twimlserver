@@ -24,7 +24,7 @@ def record():
 	callSid = session.pop('callSid')
 	r = requests.get(wavUrl)
 	
-	watsonUrl = 'https://stream.watson-j.jp/speech-to-text/api/v1/recognize?continuous=true&model=ja-JP_BroadbandModel&word_confidence=true'
+	watsonUrl = 'https://stream.watson-j.jp/speech-to-text/api/v1/recognize?continuous=true&model=ja-JP_NarrowbandModel&word_confidence=true'
 	username = os.environ["STT_USERNAME"]
 	password = os.environ["STT_PASSWORD"]
 	headers = {'Content-Type': 'audio/wav'}
