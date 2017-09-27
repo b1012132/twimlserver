@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from flask import Flask, request
+from flask import Flask, request, session
 from twilio.twiml.voice_response import VoiceResponse
 from twilio.rest import Client
 import requests
@@ -7,6 +7,7 @@ import json
 import os
 
 app = Flask(__name__)
+app.config['SECRET_KEY'] = os.environ["SECRET_KEY"]
 
 @app.route("/", methods=['GET', 'POST'])
 def hello():
@@ -19,8 +20,8 @@ def hello():
 @app.route("/record", methods=['POST'])
 def record():
 
-	wavUrl = request.form['RecordingUrl']
-	callSid = request.form['CallSid']
+	wavUrl = session.pop('wavUrl')
+	callSid = session.pop('callSid')
 	r = requests.get(wavUrl)
 	
 	watsonUrl = 'https://stream.watson-j.jp/speech-to-text/api/v1/recognize?continuous=true&model=ja-JP_BroadbandModel&word_confidence=true'
@@ -58,6 +59,9 @@ def reply():
 	
 @app.route("/pause", methods=['POST'])
 def pause():
+
+	session['wavUrl'] = request.form['RecordingUrl']
+	session['callSid'] = request.form['CallSid']
 
 	resp = VoiceResponse()
 	resp.pause(length=30)
