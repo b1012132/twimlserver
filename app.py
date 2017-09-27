@@ -46,7 +46,7 @@ def record():
 	authToken = os.environ["AUTH_TOKEN"]
 	client = Client(accountSid, authToken)
 	
-	call = client.calls(callSid).update(url="https://twimlserver.herokuapp.com/reply?say="+urllib.qute(say), method="GET")
+	call = client.calls(callSid).update(url="https://twimlserver.herokuapp.com/reply?say="+urllib.quote(say), method="GET")
 	
 	return call.to
 	
