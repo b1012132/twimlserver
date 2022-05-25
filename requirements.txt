@@ -9,7 +9,7 @@ idna==2.6
 itsdangerous==0.24
 jinja2==2.9.6
 markupsafe==1.0
-pyjwt==1.5.3
+pyjwt==2.4.0
 pytz==2017.2
 requests==2.18.1
 six==1.10.0
